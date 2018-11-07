@@ -363,7 +363,7 @@ type retryAuthClient struct {
 func RetryAuthClient(c *Client) pb.AuthClient {
 	return &retryAuthClient{
 		ac:     pb.NewAuthClient(c.conn),
-		retryf: c.newRetryWrapper(),
+		retryf: c.newAuthRetryWrapper(c.newRetryWrapper()),
 	}
 }
 
